@@ -24,14 +24,14 @@ func main() {
 	}()
 
 	// Listen for incoming connections on a specific port
-	listener, err := net.Listen("tcp", "localhost:8080")
+	server, err := net.Listen("tcp", "localhost:8080")
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
-	defer listener.Close()
+	defer server.Close()
 
-	fmt.Println("Server listening on", listener.Addr())
+	fmt.Println("Server listening on", server.Addr())
 
 	for {
 		if errors.Is(ctx.Err(), context.Canceled) {
@@ -39,7 +39,7 @@ func main() {
 		}
 
 		// Accept incoming connection
-		conn, err := listener.Accept()
+		conn, err := server.Accept()
 		if err != nil {
 			fmt.Println("Error accepting connection:", err)
 			continue
