@@ -44,10 +44,6 @@ func main() {
 			fmt.Println("Error accepting connection:", err)
 			continue
 		}
-
-		fmt.Println("Accepted connection from", conn.RemoteAddr())
-
-		// Handle the connection in a new goroutine
 		go handleConnection(conn)
 	}
 }
